@@ -2,14 +2,17 @@ Shader "Custom/Toon"
 {
     Properties
     {
+        //basic properties needed for the shader
         _Color ("Color", Color) = (1,1,1,1)
         _RampTex ("Ramp Texture", 2D) = "white" {}
     }
     SubShader
     {
+        //setting the light model and ramp
         CGPROGRAM
         #pragma surface surf ToonRamp
 
+        //setting the needed information and making the color modifiable
         float4 _Color;
         sampler2D _RampTex;
 
@@ -31,6 +34,7 @@ Shader "Custom/Toon"
             float2 uv_MainTex;
         };
 
+        //setting output as base color modified by the texture ramp
         void surf (Input IN, inout SurfaceOutput o)
         {
             o.Albedo = _Color.rgb;

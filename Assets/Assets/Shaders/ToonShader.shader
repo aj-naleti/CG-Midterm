@@ -1,6 +1,7 @@
-Shader "Custom/ToonRim"
+Shader "Custom/ToonShader+Rim"
 {
     Properties
+        //basic properties needed for the shader
     {
         _Color("Color", Color) = (1,1,1,1)
         _RampTex("Ramp Texture", 2D) = "white" {}
@@ -9,6 +10,7 @@ Shader "Custom/ToonRim"
     }
         SubShader
         {
+            //setting the light model
             CGPROGRAM
             #pragma surface surf ToonRamp
 
@@ -17,7 +19,8 @@ Shader "Custom/ToonRim"
                 float3 viewDir;
                 float2 uv_MainTex;
             };
-
+            
+            //setting the needed information and making it modifiable
             float4 _Color;
             float4 _RimColor;
             float _RimPower;
@@ -36,6 +39,7 @@ Shader "Custom/ToonRim"
                 return c;
             }
 
+            //setting the output of the toon shader and emission for rim
             void surf(Input IN, inout SurfaceOutput o)
             {
                 o.Albedo = _Color.rgb;
